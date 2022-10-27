@@ -17,7 +17,8 @@ public class LibrarianUser {
 
     public String lineRepresentation() {
 
-        return String.format("%s,%s,%s,%s,%s", librarianId, name, email, address, phoneNumber);
+        String line = librarianId + "," + name + "," + email + "," + address + "," + phoneNumber;
+        return line;
     }
 
     public String getSearchKey() {
