@@ -1,7 +1,5 @@
-import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -10,6 +8,14 @@ public class LibrarianUserDatabase {
     private ArrayList<LibrarianUser> records = new ArrayList<LibrarianUser>();
     private String fileName;
     private File recordsFile;
+
+    public String getFileName() {
+        return fileName;
+    }
+
+    public ArrayList<LibrarianUser> getRecords() {
+        return records;
+    }
 
     public LibrarianUserDatabase(String fileName) {
 
@@ -95,16 +101,4 @@ public class LibrarianUserDatabase {
             System.out.println("Couldn't write to file");
         }
     }
-
-        /*try {
-            BufferedWriter writer = new BufferedWriter(new FileWriter(fileName));
-            for (int i = 0; i < records.length; i++) {
-                writer.write(records[i].lineRepresentation());
-                writer.newLine();
-            }
-            writer.close();
-        } catch (Exception e) {
-            System.out.println("Error");
-        }
-    }*/
 }
