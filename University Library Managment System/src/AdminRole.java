@@ -17,14 +17,15 @@ public class AdminRole extends LibrarianUserDatabase {
         BufferedWriter addUser = new BufferedWriter(new FileWriter(database.getFileName(), true));
         String userData = new String(librarian.lineRepresentation());
         addUser.append(userData);
+        addUser.newLine();
         addUser.close();
     }
 
     public void removeLibrarian(String key) {
 
-        for (LibrarianUser librarian : database.getRecords()) {
+        for (LibrarianUser librarian : database.returnAllRecords()) {
             if (librarian.getSearchKey().equals(key)) {
-                database.getRecords().remove(librarian);
+                database.returnAllRecords().remove(librarian);
                 break;
             }
         }

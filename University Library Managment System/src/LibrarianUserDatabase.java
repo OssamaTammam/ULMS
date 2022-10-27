@@ -13,10 +13,6 @@ public class LibrarianUserDatabase {
         return fileName;
     }
 
-    public ArrayList<LibrarianUser> getRecords() {
-        return records;
-    }
-
     public LibrarianUserDatabase(String fileName) {
 
         this.fileName = fileName;
@@ -52,6 +48,7 @@ public class LibrarianUserDatabase {
     }
 
     public ArrayList<LibrarianUser> returnAllRecords() {
+
         return records;
     }
 
