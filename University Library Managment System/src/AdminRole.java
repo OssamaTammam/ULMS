@@ -14,6 +14,7 @@ public class AdminRole extends LibrarianUserDatabase {
     public void addLibrarian(String librarianId, String name, String email, String address, String phoneNumber) throws IOException {
 
         LibrarianUser librarian = new LibrarianUser(librarianId, name, email, address, phoneNumber);
+        database.insertRecord(librarian);
         BufferedWriter addUser = new BufferedWriter(new FileWriter(database.getFileName(), true));
         String userData = new String(librarian.lineRepresentation());
         addUser.append(userData);
