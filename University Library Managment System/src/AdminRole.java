@@ -11,6 +11,14 @@ public class AdminRole extends LibrarianUserDatabase {
         this.database = database;
     }
 
+    public LibrarianUser[] getListOfLibrarians() {
+
+        readFromFile();
+        LibrarianUser[] librarians = new LibrarianUser[database.returnAllRecords().size()];
+        librarians = database.returnAllRecords().toArray(librarians);
+        return librarians;
+    }
+
     public void addLibrarian(String librarianId, String name, String email, String address, String phoneNumber) throws IOException {
 
         LibrarianUser librarian = new LibrarianUser(librarianId, name, email, address, phoneNumber);

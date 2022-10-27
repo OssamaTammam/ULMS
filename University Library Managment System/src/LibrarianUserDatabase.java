@@ -1,3 +1,4 @@
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.util.ArrayList;
@@ -86,14 +87,14 @@ public class LibrarianUserDatabase {
     public void saveToFile() {
 
         try {
-            if (!recordsFile.exists()) {
-                recordsFile = new File(fileName);
-            }
-            FileWriter myWriter = new FileWriter(fileName);
+
+            BufferedWriter writeAllData = new BufferedWriter(new FileWriter(recordsFile, false));
             for (LibrarianUser librarian : records) {
-                String newLine = librarian.lineRepresentation();
-                myWriter.write(newLine + System.lineSeparator());
+                String info = librarian.lineRepresentation();
+                writeAllData.write(info);
+                writeAllData.newLine();
             }
+            writeAllData.close();
         } catch (Exception e) {
             System.out.println("Couldn't write to file");
         }
