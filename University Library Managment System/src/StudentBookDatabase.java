@@ -12,6 +12,10 @@ public class StudentBookDatabase {
     String fileName;
     File recordsFile;
 
+    public String getFileName() {
+        return fileName;
+    }
+
     public StudentBookDatabase(String fileName) {
         this.fileName = fileName;
     }

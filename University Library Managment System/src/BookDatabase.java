@@ -16,6 +16,10 @@ public class BookDatabase {
         this.fileName = fileName;
     }
 
+    public String getFileName() {
+        return fileName;
+    }
+
     public void readFromFile() {
 
         recordsFile = new File(fileName);
