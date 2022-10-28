@@ -1,4 +1,6 @@
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -9,7 +11,7 @@ public class BookDatabase {
 
     private File recordsFile;
 
-    public BookDatabase (String fileName) {
+    public BookDatabase(String fileName) {
 
         this.fileName = fileName;
     }
@@ -36,7 +38,72 @@ public class BookDatabase {
         }
     }
 
+    public Book createRecordFrom(String line) {
 
+        String[] parts = line.split(",");
+        Book book = new Book(parts[0], parts[1], parts[2], parts[3], Integer.parseInt(parts[4]));
+        return book;
+    }
 
+    public ArrayList<Book> returnAllRecords() {
 
+        return records;
+    }
+
+    public boolean contains(String key) {
+
+        for (Book book : records) {
+            if (book.getSearchKey().equals(key)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public Book getRecord(String key) {
+
+        for (Book book : records) {
+            if (book.getSearchKey().equals(key)) {
+                return book;
+            }
+        }
+        return null;
+    }
+
+    public void insertRecord(Book book) {
+
+        records.add(book);
+    }
+
+    public void deleteRecord(String key) {
+
+        for (Book book : records) {
+            if (book.getSearchKey().equals(key)) {
+                records.remove(book);
+                break;
+            }
+        }
+    }
+
+    public void saveToFile() {
+
+        recordsFile = new File(fileName);
+
+        try {
+
+            BufferedWriter writeAllData = new BufferedWriter(new FileWriter(recordsFile, false));
+
+            for (Book book : records) {
+                String info = book.lineRepresentation();
+                writeAllData.write(info);
+                writeAllData.newLine();
+            }
+            writeAllData.close();
+        } catch (Exception e) {
+            System.out.println("Error no file found");
+        }
+    }
 }
+
+
+
