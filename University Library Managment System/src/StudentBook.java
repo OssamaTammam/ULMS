@@ -14,18 +14,6 @@ public class StudentBook implements Record {
         this.borrowDate = borrowDate;
     }
 
-    public String getStudentId() {
-        return studentId;
-    }
-
-    public String getBookId() {
-        return bookId;
-    }
-
-    public LocalDate getBorrowDate() {
-        return borrowDate;
-    }
-
     public String lineRepresentation() {
 
         String line = studentId + "," + bookId + "," + borrowDate;

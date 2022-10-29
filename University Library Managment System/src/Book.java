@@ -15,14 +15,6 @@ public class Book implements Record {
         this.quantity = quantity;
     }
 
-    public int getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
-    }
-
     public String lineRepresentation() {
 
         String line = bookId + "," + title + "," + authorName + "," + publisherName + "," + quantity;

@@ -25,6 +25,4 @@ public class LibrarianUser implements Record{
 
         return librarianId;
     }
-
-
 }
