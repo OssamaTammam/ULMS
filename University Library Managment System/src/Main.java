@@ -1,10 +1,9 @@
 import java.io.IOException;
 
 public class Main {
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
 
-        LibrarianUserDatabase database = new LibrarianUserDatabase("librarian.txt");
-
-
+        Database librarianDatabase = new LibrarianUserDatabase("librarian.txt");
+        librarianDatabase.readFromFile();
     }
 }

@@ -1,4 +1,4 @@
-public class Book {
+public class Book implements Record {
 
     private String bookId;
     private String title;
@@ -33,5 +33,4 @@ public class Book {
 
         return bookId;
     }
-
 }

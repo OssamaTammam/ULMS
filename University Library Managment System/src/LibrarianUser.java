@@ -1,4 +1,4 @@
-public class LibrarianUser {
+public class LibrarianUser implements Record{
 
     private String librarianId;
     private String name;
@@ -25,4 +25,6 @@ public class LibrarianUser {
 
         return librarianId;
     }
+
+
 }
