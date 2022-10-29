@@ -1,3 +1,5 @@
+import java.time.LocalDate;
+
 public class LibrarianRole {
 
     Database bookDatabase;
@@ -23,6 +25,21 @@ public class LibrarianRole {
         return books;
     }
 
+    public StudentBook[] getListOfBorrowingOperations() {
 
+        StudentBook[] studentBooks = new StudentBook[studentBookDatabase.returnAllRecords().size()];
+        studentBookDatabase.returnAllRecords().toArray(studentBooks);
+        return studentBooks;
+    }
 
+    public int borrowBook(String studentId, String bookId, LocalDate borrowDate) {
+
+        Record recordBook = bookDatabase.getRecord(bookId);
+        Record recordStudentBook = studentBookDatabase.getRecord(studentId + "," + bookId);
+        Book book = (Book) recordBook;
+        StudentBook studentBook = (StudentBook) recordStudentBook;
+        if (book.getQuantity() == 0) {
+            return 0;
+        }
+    }
 }

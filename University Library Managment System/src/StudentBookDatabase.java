@@ -12,7 +12,6 @@ public class StudentBookDatabase extends Database {
         return fileName;
     }
 
-
     public Record createRecordFromLine(String line) {
 
         String[] parts = line.split(",");
