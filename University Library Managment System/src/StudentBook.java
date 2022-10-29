@@ -1,7 +1,7 @@
 import java.security.PrivateKey;
 import java.time.LocalDate;
 
-public class StudentBook {
+public class StudentBook implements Record {
 
     private String studentId;
     private String bookId;
