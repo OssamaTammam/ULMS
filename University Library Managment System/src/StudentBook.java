@@ -1,4 +1,3 @@
-import java.security.PrivateKey;
 import java.time.LocalDate;
 
 public class StudentBook implements Record {
@@ -26,15 +25,15 @@ public class StudentBook implements Record {
         return borrowDate;
     }
 
+    //Returns a string representation of the student book
     public String lineRepresentation() {
 
-        String line = studentId + "," + bookId + "," + borrowDate;
-        return line;
+        return (studentId + "," + bookId + "," + borrowDate);
     }
 
+    //Returns the student id and book id on the form of a string
     public String getSearchKey() {
 
-        String key = studentId + "," + bookId;
-        return key;
+        return (studentId + "," + bookId);
     }
 }

@@ -1,7 +1,6 @@
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -17,6 +16,7 @@ abstract public class Database {
         this.fileName = fileName;
     }
 
+    //Loads the records from the file
     public void readFromFile() {
 
         recordsFile = new File(fileName);
@@ -36,11 +36,13 @@ abstract public class Database {
         }
     }
 
+    //Returns an arraylist of all records stored in the system
     public ArrayList<Record> returnAllRecords() {
 
         return records;
     }
 
+    //Checks if the system contains a record with the given key
     public boolean contains(String key) {
 
         for (Record record : records) {
@@ -51,6 +53,7 @@ abstract public class Database {
         return false;
     }
 
+    //Returns the record with the given key if found
     public Record getRecord(String key) {
 
         for (Record record : records) {
@@ -61,17 +64,20 @@ abstract public class Database {
         return null;
     }
 
+    //Inserts a new record into the system
     public void insertRecord(Record record) {
 
         records.add(record);
     }
 
+    //Deletes a record from the system
     public void deleteRecord(String key) {
 
         Record deletedRecord = getRecord(key);
         records.remove(deletedRecord);
     }
 
+    //Saves the records to the file
     public void saveToFile() {
 
         try {

@@ -12,11 +12,11 @@ public class StudentBookDatabase extends Database {
         return fileName;
     }
 
+    //Create a new student book record from a line of text
     public Record createRecordFromLine(String line) {
 
         String[] parts = line.split(",");
-        Record newRecord = new StudentBook(parts[0], parts[1], LocalDate.now());
-        return newRecord;
+        return new StudentBook(parts[0], parts[1], LocalDate.now());
     }
 
 

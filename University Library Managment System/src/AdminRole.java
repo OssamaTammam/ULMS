@@ -6,6 +6,8 @@ public class AdminRole {
         this.librarianDatabase = database;
     }
 
+
+    //Gets a list of all librarians
     public LibrarianUser[] getListOfLibrarians() {
 
         LibrarianUser[] librarians = new LibrarianUser[librarianDatabase.returnAllRecords().size()];
@@ -13,12 +15,14 @@ public class AdminRole {
         return librarians;
     }
 
+    //Adds a new librarian to the system
     public void addLibrarian(String librarianId, String name, String email, String address, String phoneNumber) {
 
         LibrarianUser librarian = new LibrarianUser(librarianId, name, email, address, phoneNumber);
         librarianDatabase.insertRecord(librarian);
     }
 
+    //Remove a librarian from the system
     public void removeLibrarian(String key) {
 
         for (Record librarian : librarianDatabase.returnAllRecords()) {
@@ -29,6 +33,7 @@ public class AdminRole {
         }
     }
 
+    //Saves all the changes made to the system and logs out
     public void logout() {
 
         librarianDatabase.saveToFile();

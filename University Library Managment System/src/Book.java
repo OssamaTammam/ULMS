@@ -19,12 +19,13 @@ public class Book implements Record {
         return quantity;
     }
 
+    //Returns a string representation of the book
     public String lineRepresentation() {
 
-        String line = bookId + "," + title + "," + authorName + "," + publisherName + "," + quantity;
-        return line;
+        return (bookId + "," + title + "," + authorName + "," + publisherName + "," + quantity);
     }
 
+    //Returns the book id
     public String getSearchKey() {
 
         return bookId;

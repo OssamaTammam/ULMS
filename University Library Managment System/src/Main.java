@@ -4,10 +4,8 @@ public class Main {
         Database librarianUserDatabase = new LibrarianUserDatabase("librarian.txt");
         Database studentBookDatabase = new StudentBookDatabase("studentBooks.txt");
         Database bookDatabase = new BookDatabase("book.txt");
-
         AdminRole adminRole = new AdminRole(librarianUserDatabase);
-
-        adminRole.addLibrarian("7352","Ossama","ossama@gmail.com","Alex","01030205223");
+        LibrarianRole librarianRole = new LibrarianRole(bookDatabase, studentBookDatabase);
 
 
     }

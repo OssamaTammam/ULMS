@@ -1,4 +1,4 @@
-public class LibrarianUser implements Record{
+public class LibrarianUser implements Record {
 
     private String librarianId;
     private String name;
@@ -15,12 +15,13 @@ public class LibrarianUser implements Record{
         this.phoneNumber = phoneNumber;
     }
 
+    //Returns a string representation of the librarian
     public String lineRepresentation() {
 
-        String line = librarianId + "," + name + "," + email + "," + address + "," + phoneNumber;
-        return line;
+        return (librarianId + "," + name + "," + email + "," + address + "," + phoneNumber);
     }
 
+    //Returns the librarian id
     public String getSearchKey() {
 
         return librarianId;

@@ -5,7 +5,7 @@ public class LibrarianRole {
     Database bookDatabase;
     Database studentBookDatabase;
 
-    public LibrarianRole(BookDatabase bookDatabase, StudentBookDatabase studentBookDatabase) {
+    public LibrarianRole(Database bookDatabase, Database studentBookDatabase) {
 
         this.bookDatabase = bookDatabase;
         this.studentBookDatabase = studentBookDatabase;
