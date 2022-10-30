@@ -2,11 +2,14 @@ import java.time.LocalDate;
 import java.util.Scanner;
 
 public class Main {
+
+    //Capitalizes the start of every word in a string
     public static String capitalizeString(String str) {
 
         String[] words = str.split(" ");
         String capitalizedString = "";
         for (String w : words) {
+
             String first = w.substring(0, 1);
             String afterFirst = w.substring(1);
             capitalizedString += first.toUpperCase() + afterFirst + " ";
@@ -18,11 +21,17 @@ public class Main {
     public static void main(String[] args) {
 
         Scanner scanner = new Scanner(System.in);
+
+        //Create the database objects for the 3 types of records
         Database librarianUserDatabase = new LibrarianUserDatabase("librarian.txt");
         Database studentBookDatabase = new StudentBookDatabase("studentBooks.txt");
         Database bookDatabase = new BookDatabase("books.txt");
+
+        //Create the two roles used in the system
         AdminRole adminRole = new AdminRole(librarianUserDatabase);
         LibrarianRole librarianRole = new LibrarianRole(bookDatabase, studentBookDatabase);
+
+        //Read the data from the files
         librarianUserDatabase.readFromFile();
         studentBookDatabase.readFromFile();
         bookDatabase.readFromFile();
@@ -31,6 +40,7 @@ public class Main {
         System.out.println("Please enter your role Admin or Librarian: ");
         String roleChoice = scanner.nextLine();
 
+        //Menu to utilize the admin roles and its methods
         if (roleChoice.equalsIgnoreCase("admin")) {
 
             loop:
@@ -89,6 +99,7 @@ public class Main {
                     }
                 }
             }
+            //Menu to utilize the librarian roles and its methods
         } else if (roleChoice.equalsIgnoreCase("librarian")) {
 
             loop:
