@@ -47,13 +47,13 @@ public class Main {
             while (true) {
 
                 String choice;
-                System.out.println("Choose an operation:");
                 System.out.println("1. Add a new librarian");
                 System.out.println("2. Remove a librarian");
                 System.out.println("3. List all librarians");
                 System.out.println("4. Save");
                 System.out.println("5. Log out and save");
                 System.out.println("6. Log out and don't save");
+                System.out.println("Choose an operation:");
                 choice = scanner.nextLine();
 
                 switch (choice) {
@@ -96,7 +96,7 @@ public class Main {
 
                         break;
                     }
-                    case "4":{
+                    case "4": {
 
                         librarianUserDatabase.saveToFile();
 
@@ -108,10 +108,10 @@ public class Main {
 
                         break loop;
                     }
-                    case"6":{
+                    case "6": {
 
-                            System.out.println("You have been logged out successfully without saving");
-                            System.exit(0);
+                        System.out.println("You have been logged out successfully without saving");
+                        System.exit(0);
                     }
                     default: {
 
@@ -128,7 +128,6 @@ public class Main {
             while (true) {
 
                 String choice;
-                System.out.println("Choose an operation:");
                 System.out.println("1. Add a new book");
                 System.out.println("2. List all books");
                 System.out.println("3. Issue a book");
@@ -137,6 +136,7 @@ public class Main {
                 System.out.println("6. Save");
                 System.out.println("7. Log out and save");
                 System.out.println("8. Log out and don't save");
+                System.out.println("Choose an operation:");
                 choice = scanner.nextLine();
 
                 switch (choice) {
@@ -220,7 +220,7 @@ public class Main {
 
                         break;
                     }
-                    case "6":{
+                    case "6": {
 
                         studentBookDatabase.saveToFile();
                         bookDatabase.saveToFile();
@@ -233,7 +233,7 @@ public class Main {
 
                         break loop;
                     }
-                    case"8":{
+                    case "8": {
 
                         System.out.println("You have been logged out successfully without saving");
                         System.exit(0);
