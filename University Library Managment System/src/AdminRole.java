@@ -18,6 +18,13 @@ public class AdminRole {
     //Adds a new librarian to the system
     public void addLibrarian(String librarianId, String name, String email, String address, String phoneNumber) {
 
+        for (Record temp: librarianDatabase.returnAllRecords()) {
+
+            if (librarianDatabase.getRecord(librarianId) != null) {
+                System.out.println("Librarian already exists");
+                return;
+            }
+        }
         LibrarianUser librarian = new LibrarianUser(librarianId, name, email, address, phoneNumber);
         librarianDatabase.insertRecord(librarian);
     }

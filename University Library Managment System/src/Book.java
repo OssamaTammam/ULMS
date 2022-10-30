@@ -32,6 +32,7 @@ public class Book implements Record {
     }
 
     public void setQuantity(int newQuantity) {
+        this.quantity= newQuantity;
     }
 
     public String getBookId() {

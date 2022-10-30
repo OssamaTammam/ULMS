@@ -15,6 +15,13 @@ public class LibrarianRole {
     //Adds a new book to the system
     public void addBook(String id, String title, String authorName, String publisherName, int quantity) {
 
+        for (Record temp : bookDatabase.returnAllRecords()) {
+
+            if (bookDatabase.getRecord(id) != null) {
+                System.out.println("Book already exists");
+                return;
+            }
+        }
         Book book = new Book(id, title, authorName, publisherName, quantity);
         bookDatabase.insertRecord(book);
     }
@@ -49,12 +56,17 @@ public class LibrarianRole {
             return 1;
         } else {
 
+            recordBook.setQuantity(recordBook.getQuantity() - 1);
+            recordStudentBook = new StudentBook(studentId, bookId, borrowDate);
+            studentBookDatabase.insertRecord(recordStudentBook);
+            return 2;
+            /*
             Record newBook = new Book(bookId, recordBook.getTitle(), recordBook.getAuthorName(), recordBook.getPublisherName(), recordBook.getQuantity() - 1);
             bookDatabase.deleteRecord(bookId);
             bookDatabase.insertRecord(newBook);
             Record newStudentBook = new StudentBook(studentId, bookId, borrowDate);
             studentBookDatabase.insertRecord(newStudentBook);
-            return 2;
+            return 2;*/
         }
     }
 
@@ -74,9 +86,7 @@ public class LibrarianRole {
 
         double returnFee = calcReturnFee(((StudentBook) studentBookDatabase.getRecord(studentId + "," + bookId)).getBorrowDate(), returnDate);
         Book recordBook = (Book) bookDatabase.getRecord(bookId);
-        Book newBook = new Book(bookId, recordBook.getTitle(), recordBook.getAuthorName(), recordBook.getPublisherName(), recordBook.getQuantity() + 1);
-        bookDatabase.deleteRecord(bookId);
-        bookDatabase.insertRecord(newBook);
+        recordBook.setQuantity(recordBook.getQuantity() + 1);
         studentBookDatabase.deleteRecord(studentId + "," + bookId);
 
         return returnFee;

@@ -18,6 +18,16 @@ public class Main {
         return capitalizedString.trim();
     }
 
+    //Checks if string is numeric
+    public static boolean isNumeric(String str) {
+        try {
+            Integer.parseInt(str);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
+        }
+    }
+
     public static void main(String[] args) {
 
         Scanner scanner = new Scanner(System.in);
@@ -37,11 +47,13 @@ public class Main {
         bookDatabase.readFromFile();
 
         System.out.println("Welcome to the University Library Management System");
-        System.out.println("Please enter your role Admin or Librarian: ");
+        System.out.println("1. Login as Admin");
+        System.out.println("2. Login as Librarian");
+        System.out.println("Please choose a role: ");
         String roleChoice = scanner.nextLine();
 
         //Menu to utilize the admin roles and its methods
-        if (roleChoice.equalsIgnoreCase("admin")) {
+        if (roleChoice.equals("1")) {
 
             loop:
             while (true) {
@@ -122,7 +134,7 @@ public class Main {
                 }
             }
             //Menu to utilize the librarian roles and its methods
-        } else if (roleChoice.equalsIgnoreCase("librarian")) {
+        } else if (roleChoice.equals("2")) {
 
             loop:
             while (true) {
@@ -142,7 +154,7 @@ public class Main {
                 switch (choice) {
                     case "1": {
 
-                        String bookId, title, author, publisher, quantity;
+                        String bookId, title, author, publisher, quantity = null;
                         System.out.println("Enter the book id: ");
                         bookId = scanner.nextLine();
                         System.out.println("Enter the book title: ");
@@ -151,8 +163,13 @@ public class Main {
                         author = scanner.nextLine();
                         System.out.println("Enter the book publisher: ");
                         publisher = scanner.nextLine();
-                        System.out.println("Enter the quantity: ");
-                        quantity = scanner.nextLine();
+                        do {
+
+                            if (quantity != null) {
+                                System.out.println("Invalid input. Please enter an integer");
+                            }
+                            System.out.println("Enter the book quantity: ");
+                        } while (!(isNumeric(quantity = scanner.nextLine())));
                         librarianRole.addBook(bookId, capitalizeString(title), capitalizeString(author), capitalizeString(publisher), Integer.parseInt(quantity));
 
                         break;
@@ -201,7 +218,7 @@ public class Main {
                         double returnFee = librarianRole.returnBook(studentId, BookId, LocalDate.now());
 
                         if (returnFee == 0)
-                            System.out.println("Book returned successfully");
+                            System.out.println("Book returned successfully without a fine");
                         else
                             System.out.println("Books return with a fine of " + returnFee);
 
@@ -235,7 +252,7 @@ public class Main {
                     }
                     case "8": {
 
-                        System.out.println("You have been logged out successfully without saving");
+                        System.out.println("You have been logged out without saving successfully");
                         System.exit(0);
                     }
                     default: {
