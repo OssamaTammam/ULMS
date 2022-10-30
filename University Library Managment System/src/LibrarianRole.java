@@ -1,4 +1,5 @@
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 
 public class LibrarianRole {
 
@@ -57,23 +58,28 @@ public class LibrarianRole {
         }
     }
 
+    //Calculates the fine for a student
+    double calcReturnFee(LocalDate borrowDate, LocalDate returnDate) {
+
+        int dateDifference = (int) ChronoUnit.DAYS.between(borrowDate, returnDate);
+        if (dateDifference < 7) {
+            return 0;
+        } else {
+            return ((dateDifference - 7) * 0.5);
+        }
+    }
+
     //Student returns a book
     public double returnBook(String studentId, String bookId, LocalDate returnDate) {
 
-        int dateDifference;
-
+        double returnFee = calcReturnFee(((StudentBook) studentBookDatabase.getRecord(studentId + "," + bookId)).getBorrowDate(), returnDate);
         Book recordBook = (Book) bookDatabase.getRecord(bookId);
         Book newBook = new Book(bookId, recordBook.getTitle(), recordBook.getAuthorName(), recordBook.getPublisherName(), recordBook.getQuantity() + 1);
         bookDatabase.deleteRecord(bookId);
         bookDatabase.insertRecord(newBook);
         studentBookDatabase.deleteRecord(studentId + "," + bookId);
 
-        dateDifference = returnDate.getDayOfYear() - ((StudentBook) studentBookDatabase.getRecord(studentId + "," + bookId)).getBorrowDate().getDayOfYear();
-        if (dateDifference < 7) {
-            return 0;
-        } else {
-            return ((dateDifference - 7) * 0.5);
-        }
+        return returnFee;
     }
 
     public void logout() {

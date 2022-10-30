@@ -51,7 +51,9 @@ public class Main {
                 System.out.println("1. Add a new librarian");
                 System.out.println("2. Remove a librarian");
                 System.out.println("3. List all librarians");
-                System.out.println("4. Log out and save");
+                System.out.println("4. Save");
+                System.out.println("5. Log out and save");
+                System.out.println("6. Log out and don't save");
                 choice = scanner.nextLine();
 
                 switch (choice) {
@@ -69,6 +71,8 @@ public class Main {
                         System.out.println("Enter the librarian phone number: ");
                         phoneNumber = scanner.nextLine();
                         adminRole.addLibrarian(librarianId, capitalizeString(name), email, address, phoneNumber);
+
+                        break;
                     }
                     case "2": {
 
@@ -76,6 +80,8 @@ public class Main {
                         String librarianId = scanner.nextLine();
 
                         adminRole.removeLibrarian(librarianId);
+
+                        break;
                     }
                     case "3": {
 
@@ -87,15 +93,31 @@ public class Main {
 
                             System.out.println(librarian.lineRepresentation());
                         }
+
+                        break;
                     }
-                    case "4": {
+                    case "4":{
+
+                        librarianUserDatabase.saveToFile();
+
+                        break;
+                    }
+                    case "5": {
 
                         adminRole.logout();
+
                         break loop;
+                    }
+                    case"6":{
+
+                            System.out.println("You have been logged out successfully without saving");
+                            System.exit(0);
                     }
                     default: {
 
                         System.out.println("Invalid choice");
+
+                        break;
                     }
                 }
             }
@@ -112,7 +134,9 @@ public class Main {
                 System.out.println("3. Issue a book");
                 System.out.println("4. Return a book");
                 System.out.println("5. List all issued books");
-                System.out.println("6. Log out and save");
+                System.out.println("6. Save");
+                System.out.println("7. Log out and save");
+                System.out.println("8. Log out and don't save");
                 choice = scanner.nextLine();
 
                 switch (choice) {
@@ -193,16 +217,31 @@ public class Main {
 
                             System.out.println(studentBook.lineRepresentation());
                         }
+
                         break;
                     }
-                    case "6": {
+                    case "6":{
+
+                        studentBookDatabase.saveToFile();
+                        bookDatabase.saveToFile();
+
+                        break;
+                    }
+                    case "7": {
 
                         librarianRole.logout();
+
                         break loop;
+                    }
+                    case"8":{
+
+                        System.out.println("You have been logged out successfully without saving");
+                        System.exit(0);
                     }
                     default: {
 
                         System.out.println("Invalid choice");
+
                         break;
                     }
                 }
