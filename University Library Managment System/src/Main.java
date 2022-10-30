@@ -32,19 +32,9 @@ public class Main {
 
         Scanner scanner = new Scanner(System.in);
 
-        //Create the database objects for the 3 types of records
-        Database librarianUserDatabase = new LibrarianUserDatabase("librarian.txt");
-        Database studentBookDatabase = new StudentBookDatabase("studentBooks.txt");
-        Database bookDatabase = new BookDatabase("books.txt");
-
         //Create the two roles used in the system
-        AdminRole adminRole = new AdminRole(librarianUserDatabase);
-        LibrarianRole librarianRole = new LibrarianRole(bookDatabase, studentBookDatabase);
-
-        //Read the data from the files
-        librarianUserDatabase.readFromFile();
-        studentBookDatabase.readFromFile();
-        bookDatabase.readFromFile();
+        AdminRole adminRole = new AdminRole();
+        LibrarianRole librarianRole = new LibrarianRole();
 
         System.out.println("Welcome to the University Library Management System");
         System.out.println("1. Login as Admin");
@@ -62,9 +52,8 @@ public class Main {
                 System.out.println("1. Add a new librarian");
                 System.out.println("2. Remove a librarian");
                 System.out.println("3. List all librarians");
-                System.out.println("4. Save");
-                System.out.println("5. Log out and save");
-                System.out.println("6. Log out and don't save");
+                System.out.println("4. Log out and save");
+                System.out.println("5. Log out and don't save");
                 System.out.println("Choose an operation:");
                 choice = scanner.nextLine();
 
@@ -110,17 +99,11 @@ public class Main {
                     }
                     case "4": {
 
-                        librarianUserDatabase.saveToFile();
-
-                        break;
-                    }
-                    case "5": {
-
                         adminRole.logout();
 
                         break loop;
                     }
-                    case "6": {
+                    case "5": {
 
                         System.out.println("You have been logged out successfully without saving");
                         System.exit(0);
@@ -145,9 +128,8 @@ public class Main {
                 System.out.println("3. Issue a book");
                 System.out.println("4. Return a book");
                 System.out.println("5. List all issued books");
-                System.out.println("6. Save");
-                System.out.println("7. Log out and save");
-                System.out.println("8. Log out and don't save");
+                System.out.println("6. Log out and save");
+                System.out.println("7. Log out and don't save");
                 System.out.println("Choose an operation:");
                 choice = scanner.nextLine();
 
@@ -239,18 +221,11 @@ public class Main {
                     }
                     case "6": {
 
-                        studentBookDatabase.saveToFile();
-                        bookDatabase.saveToFile();
-
-                        break;
-                    }
-                    case "7": {
-
                         librarianRole.logout();
 
                         break loop;
                     }
-                    case "8": {
+                    case "7": {
 
                         System.out.println("You have been logged out without saving successfully");
                         System.exit(0);

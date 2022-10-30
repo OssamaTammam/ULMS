@@ -2,8 +2,9 @@ public class AdminRole {
 
     Database librarianDatabase;
 
-    public AdminRole(Database database) {
-        this.librarianDatabase = database;
+    public AdminRole() {
+        this.librarianDatabase = new LibrarianUserDatabase("librarian.txt");
+        this.librarianDatabase.readFromFile();
     }
 
 
@@ -18,7 +19,7 @@ public class AdminRole {
     //Adds a new librarian to the system
     public void addLibrarian(String librarianId, String name, String email, String address, String phoneNumber) {
 
-        for (Record temp: librarianDatabase.returnAllRecords()) {
+        for (Record temp : librarianDatabase.returnAllRecords()) {
 
             if (librarianDatabase.getRecord(librarianId) != null) {
                 System.out.println("Librarian already exists");
@@ -45,6 +46,5 @@ public class AdminRole {
 
         librarianDatabase.saveToFile();
         System.out.println("You have been logged out successfully");
-        System.exit(0);
     }
 }

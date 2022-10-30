@@ -6,10 +6,12 @@ public class LibrarianRole {
     Database bookDatabase;
     Database studentBookDatabase;
 
-    public LibrarianRole(Database bookDatabase, Database studentBookDatabase) {
+    public LibrarianRole() {
 
-        this.bookDatabase = bookDatabase;
-        this.studentBookDatabase = studentBookDatabase;
+        this.studentBookDatabase = new StudentBookDatabase("studentBooks.txt");
+        this.bookDatabase = new BookDatabase("books.txt");
+        this.studentBookDatabase.readFromFile();
+        this.bookDatabase.readFromFile();
     }
 
     //Adds a new book to the system
@@ -50,10 +52,10 @@ public class LibrarianRole {
 
         if (recordBook == null)
             return -1;
-        else if (recordBook.getQuantity() == 0) {
-            return 0;
-        } else if (recordStudentBook != null && recordStudentBook.lineRepresentation().equals(studentId + "," + bookId + "," + borrowDate)) {
+        else if (recordStudentBook != null && recordStudentBook.getSearchKey().equals(studentId + "," + bookId)) {
             return 1;
+        } else if (recordBook.getQuantity() == 0) {
+            return 0;
         } else {
 
             recordBook.setQuantity(recordBook.getQuantity() - 1);
@@ -97,6 +99,5 @@ public class LibrarianRole {
         bookDatabase.saveToFile();
         studentBookDatabase.saveToFile();
         System.out.println("You have been logged out successfully");
-        System.exit(0);
     }
 }
