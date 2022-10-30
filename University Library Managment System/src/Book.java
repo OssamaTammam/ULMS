@@ -30,4 +30,24 @@ public class Book implements Record {
 
         return bookId;
     }
+
+    public void setQuantity(int newQuantity) {
+    }
+
+    public String getBookId() {
+        return bookId;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public String getAuthorName() {
+        return authorName;
+    }
+
+    public String getPublisherName() {
+        return publisherName;
+    }
 }
+

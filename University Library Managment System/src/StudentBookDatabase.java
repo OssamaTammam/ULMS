@@ -18,13 +18,4 @@ public class StudentBookDatabase extends Database {
         String[] parts = line.split(",");
         return new StudentBook(parts[0], parts[1], LocalDate.now());
     }
-
-
-
-
-
-
-
-
-
 }

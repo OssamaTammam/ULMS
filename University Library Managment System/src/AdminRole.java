@@ -37,6 +37,7 @@ public class AdminRole {
     public void logout() {
 
         librarianDatabase.saveToFile();
-        System.out.println("You have been logged out");
+        System.out.println("You have been logged out successfully");
+        System.exit(0);
     }
 }
