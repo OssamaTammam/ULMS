@@ -1,3 +1,5 @@
+package backend;
+
 public class TestAdmin {
 
     public static void test1() {

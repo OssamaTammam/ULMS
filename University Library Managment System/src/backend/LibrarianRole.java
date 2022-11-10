@@ -1,31 +1,36 @@
+package backend;
+
+import constants.FileNames;
+
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 
-public class LibrarianRole {
+public class LibrarianRole implements FileNames {
 
     Database bookDatabase;
     Database studentBookDatabase;
 
     public LibrarianRole() {
 
-        this.studentBookDatabase = new StudentBookDatabase("studentBooks.txt");
-        this.bookDatabase = new BookDatabase("books.txt");
+        this.studentBookDatabase = new StudentBookDatabase(STUDENTSBOOKS_FILENAME);
+        this.bookDatabase = new BookDatabase(BOOKS_FILENAME);
         this.studentBookDatabase.readFromFile();
         this.bookDatabase.readFromFile();
     }
 
     //Adds a new book to the system
-    public void addBook(String id, String title, String authorName, String publisherName, int quantity) {
+    public int addBook(String id, String title, String authorName, String publisherName, int quantity) {
 
         for (Record temp : bookDatabase.returnAllRecords()) {
 
             if (bookDatabase.getRecord(id) != null) {
                 System.out.println("Book already exists");
-                return;
+                return -1;
             }
         }
         Book book = new Book(id, title, authorName, publisherName, quantity);
         bookDatabase.insertRecord(book);
+        return 1;
     }
 
     //Returns an array of all books
@@ -63,10 +68,10 @@ public class LibrarianRole {
             studentBookDatabase.insertRecord(recordStudentBook);
             return 2;
             /*
-            Record newBook = new Book(bookId, recordBook.getTitle(), recordBook.getAuthorName(), recordBook.getPublisherName(), recordBook.getQuantity() - 1);
+            backend.Record newBook = new backend.Book(bookId, recordBook.getTitle(), recordBook.getAuthorName(), recordBook.getPublisherName(), recordBook.getQuantity() - 1);
             bookDatabase.deleteRecord(bookId);
             bookDatabase.insertRecord(newBook);
-            Record newStudentBook = new StudentBook(studentId, bookId, borrowDate);
+            backend.Record newStudentBook = new backend.StudentBook(studentId, bookId, borrowDate);
             studentBookDatabase.insertRecord(newStudentBook);
             return 2;*/
         }

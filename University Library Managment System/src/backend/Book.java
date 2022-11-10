@@ -1,3 +1,5 @@
+package backend;
+
 public class Book implements Record {
 
     private String bookId;

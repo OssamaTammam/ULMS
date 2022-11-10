@@ -1,3 +1,5 @@
+package backend;
+
 import java.time.LocalDate;
 import java.util.Scanner;
 
@@ -178,13 +180,13 @@ public class Main {
                         int state = librarianRole.borrowBook(studentId, BookId, LocalDate.now());
 
                         if (state == 2)
-                            System.out.println("Book issued successfully");
+                            System.out.println("backend.Book issued successfully");
                         else if (state == 1)
-                            System.out.println("Book is already issued to this student");
+                            System.out.println("backend.Book is already issued to this student");
                         else if (state == 0)
-                            System.out.println("Book is not available in storage");
+                            System.out.println("backend.Book is not available in storage");
                         else if (state == -1)
-                            System.out.println("Book doesn't exist in the system");
+                            System.out.println("backend.Book doesn't exist in the system");
 
                         break;
                     }
@@ -200,7 +202,7 @@ public class Main {
                         double returnFee = librarianRole.returnBook(studentId, BookId, LocalDate.now());
 
                         if (returnFee == 0)
-                            System.out.println("Book returned successfully without a fine");
+                            System.out.println("backend.Book returned successfully without a fine");
                         else
                             System.out.println("Books return with a fine of " + returnFee);
 

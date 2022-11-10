@@ -1,3 +1,5 @@
+package backend;
+
 public class LibrarianUser implements Record {
 
     private String librarianId;

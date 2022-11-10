@@ -1,9 +1,13 @@
-public class AdminRole {
+package backend;
+
+import constants.FileNames;
+
+public class AdminRole  implements FileNames {
 
     Database librarianDatabase;
 
     public AdminRole() {
-        this.librarianDatabase = new LibrarianUserDatabase("librarian.txt");
+        this.librarianDatabase = new LibrarianUserDatabase(LIBRARIANS_FILENAME);
         this.librarianDatabase.readFromFile();
     }
 
@@ -17,28 +21,30 @@ public class AdminRole {
     }
 
     //Adds a new librarian to the system
-    public void addLibrarian(String librarianId, String name, String email, String address, String phoneNumber) {
+    public int addLibrarian(String librarianId, String name, String email, String address, String phoneNumber) {
 
         for (Record temp : librarianDatabase.returnAllRecords()) {
 
             if (librarianDatabase.getRecord(librarianId) != null) {
                 System.out.println("Librarian already exists");
-                return;
+                return -1;
             }
         }
         LibrarianUser librarian = new LibrarianUser(librarianId, name, email, address, phoneNumber);
         librarianDatabase.insertRecord(librarian);
+        return 1;
     }
 
     //Remove a librarian from the system
-    public void removeLibrarian(String key) {
+    public int removeLibrarian(String key) {
 
         for (Record librarian : librarianDatabase.returnAllRecords()) {
             if (librarian.getSearchKey().equals(key)) {
                 librarianDatabase.returnAllRecords().remove(librarian);
-                break;
+                return 1;
             }
         }
+        return -1;
     }
 
     //Saves all the changes made to the system and logs out
