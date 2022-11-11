@@ -144,6 +144,8 @@ public class AdminLogin extends javax.swing.JFrame implements LoginCredentials, 
         } else {
 
             JOptionPane.showMessageDialog(null, "Username or Password is incorrect");
+            this.setVisible(false);
+            ((JFrame) getParentNode()).setVisible(true);
         }
 
     }//GEN-LAST:event_buttonLoginActionPerformed
